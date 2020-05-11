@@ -21,5 +21,10 @@ pipeline {
           sh 'docker run --rm --name todo-unit-testing todo test:unit'
         }
       }
+      stage('E2E test stage'){
+        steps{
+          sh 'docker run --rm --name todo-E2E-testing todo test:e2e --headless'
+        }
+      }
     }
 }
