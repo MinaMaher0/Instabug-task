@@ -11,5 +11,10 @@ pipeline {
         }
         
       }
+      stage('lint stage'){
+        steps{
+          sh 'docker run --rm --name todo-lint todo lint'
+        }
+      }
     }
 }
