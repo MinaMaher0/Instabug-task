@@ -16,5 +16,10 @@ pipeline {
           sh 'docker run --rm --name todo-lint todo lint'
         }
       }
+      stage('unit test stage'){
+        steps{
+          sh 'docker run --rm --name todo-unit-testing todo test:unit'
+        }
+      }
     }
 }
