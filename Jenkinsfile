@@ -6,10 +6,14 @@ pipeline {
           dir('app') {
               git url: 'https://github.com/dobromir-hristov/todo-app'
               sh 'mv ../Dockerfile .'
-              sh 'docker build -t todo .'
+              sh 'docker build -t todo . > build.txt'
           }
         }
-        
+        post {
+          always {
+            archiveArtifacts artifacts: 'app/build.txt'
+          }
+        }
       }
       stage('lint stage'){
         steps{
