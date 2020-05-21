@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:lts as builder
   
 # install xvfb
 RUN apt-get update -y \
@@ -25,7 +25,15 @@ COPY . .
 
 EXPOSE 8080
 
-ENTRYPOINT ["yarn"]
+RUN yarn build
 
-CMD ["build"]
+ENTRYPOINT [ "yarn" ]
+
+
+FROM alpine as production_image
+
+WORKDIR /app
+
+COPY --from=builder /app/dist .
+
 
