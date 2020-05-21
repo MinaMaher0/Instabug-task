@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-      stage('Build dokcer image'){
+      stage('Build docker image'){
         steps{
           dir('app') {
               git url: 'https://github.com/dobromir-hristov/todo-app'
